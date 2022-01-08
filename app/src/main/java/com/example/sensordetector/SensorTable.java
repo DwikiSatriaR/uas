@@ -37,9 +37,8 @@ public class SensorTable {
     public static void insert(float x, float y, float z) {
         SQLiteDatabase db = dataHelper.getWritableDatabase();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        DecimalFormat df = new DecimalFormat("#.##");
         String strDate = dateFormat.format(new Date());
-        String sql = "insert into sensor_data(time, x, y, z) values('" + strDate + "'," + df.format(x) + "," + df.format(y) + "," + df.format(z) + ")";
+        String sql = "insert into sensor_data(time, x, y, z) values('" + strDate + "'," + x + "," + y + "," + z + ")";
         db.execSQL(sql);
     }
 }

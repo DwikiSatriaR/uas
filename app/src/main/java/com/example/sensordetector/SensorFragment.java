@@ -1,7 +1,9 @@
 package com.example.sensordetector;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +31,8 @@ public class SensorFragment extends Fragment {
         public void run() {
             try {
                 MainActivity activity = (MainActivity) requireActivity();
-                DecimalFormat df = new DecimalFormat("#.##");
-                sensorTextView.setText(String.format("x = %s, y = %s, z = %s", df.format(activity.sensorValues[0]), df.format(activity.sensorValues[1]), df.format(activity.sensorValues[2])));
+                DecimalFormat df = new DecimalFormat("#,##");
+                sensorTextView.setText(String.format("x = %s, y = %s, z = %s", floatFormat(activity.sensorValues[0]), floatFormat(activity.sensorValues[1]), floatFormat(activity.sensorValues[2])));
             } finally {
                 // Delay every 2 seconds
                 handler.postDelayed(updateSensorText, 1000 * 2);
@@ -43,8 +45,10 @@ public class SensorFragment extends Fragment {
         public void run() {
             try {
                 result.clear();
-                for (LogSensor log : SensorTable.getAll())
-                    result.add(formatDateString(log.timestamp) + "   |  x = " + log.x + ", y = " + log.y + ", z = " + log.z);
+                for (LogSensor log : SensorTable.getAll()) {
+                    DecimalFormat df = new DecimalFormat("#,##");
+                    result.add(formatDateString(log.timestamp) + "   |  x = " + floatFormat(log.x) + ", y = " + floatFormat(log.y) + ", z = " + floatFormat(log.z));
+                }
                 adapter.notifyDataSetChanged();
             } finally {
                 // Delay every 2 minutes
@@ -94,5 +98,10 @@ public class SensorFragment extends Fragment {
             e.printStackTrace();
         }
         return "";
+    }
+
+    String floatFormat(float val) {
+        DecimalFormat df = new DecimalFormat("#.#");
+        return df.format(val).replace(',', '.');
     }
 }
