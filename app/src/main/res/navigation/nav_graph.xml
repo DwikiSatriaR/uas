@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.sensordetector.HomeFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_sensorFragment"
+            app:destination="@id/sensorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sensorFragment"
+        android:name="com.example.sensordetector.SensorFragment"
+        android:label="Nilai Sensor Magnetic"
+        tools:layout="@layout/fragment_sensor" />
+</navigation>

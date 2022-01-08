@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SensorDetector</string>
+    <string name="name">Nama : Dwiki Satria Ramadhan</string>
+    <string name="nim">NIM : 19.01.53.0057</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sensor">Sensor</string>
+</resources>
